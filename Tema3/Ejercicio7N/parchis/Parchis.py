@@ -8,8 +8,14 @@ class Parchis:
     def __init__(self, nomJ1, nomJ2):
         self.fichaJ1 = 0
         self.fichaJ2 = 0
-        self.nomJ1 = nomJ1
-        self.nomJ2 = nomJ2
+        if len(nomJ1) <= 7:
+            self.nomJ1 = nomJ1
+        else:
+            self.nomJ1 = nomJ1[0:7]
+        if len(nomJ2) <= 7:
+            self.nomJ2 = nomJ2
+        else:
+            self.nomJ2 = nomJ2[0:7]
 
     @staticmethod
     def tiraDados():
@@ -22,11 +28,17 @@ class Parchis:
             for j in range(Parchis.TAM_TABLERO+2):
                 if j==0:
                     if i==0:
-                        tabla += "\t"
+                        tabla += "\t\t"
                     elif i==1:
-                        tabla += self.nomJ1 + "\t"
+                        if len(self.nomJ1) < 4:
+                            tabla += self.nomJ1 + "\t\t"
+                        else:
+                            tabla += self.nomJ1 + "\t"
                     else:
-                        tabla += self.nomJ2 + "\t"
+                        if len(self.nomJ2) < 4:
+                            tabla += self.nomJ2 + "\t\t"
+                        else:
+                            tabla += self.nomJ2 + "\t"
                 elif j==1:
                     tabla += "I\t"
                 elif j==Parchis.TAM_TABLERO+1:
