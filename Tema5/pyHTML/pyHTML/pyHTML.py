@@ -2,8 +2,10 @@
 
 import reflex as rx
 
-from rxconfig import config
-
+from pyHTML.views.body.leftcol import leftcol
+from pyHTML.views.body.rightcol import rightcol
+from pyHTML.views.footer.footer import footer
+from pyHTML.views.header.header import header
 
 class State(rx.State):
     """The app state."""
@@ -12,7 +14,16 @@ class State(rx.State):
 
 
 def index() -> rx.Component:
-    return rx.text("Hoal FEO")
+    return rx.vstack(
+        header(),
+        rx.hstack (
+            leftcol(),
+            rightcol(),
+            padding_x="25px", padding_y="30px"
+        ),
+        footer(),
+        align="center"
+    )
 
 
 app = rx.App()
