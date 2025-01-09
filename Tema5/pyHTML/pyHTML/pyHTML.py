@@ -2,6 +2,7 @@
 
 import reflex as rx
 
+from pyHTML.styles.styles import *
 from pyHTML.views.body.leftcol import leftcol
 from pyHTML.views.body.rightcol import rightcol
 from pyHTML.views.footer.footer import footer
@@ -19,12 +20,14 @@ def index() -> rx.Component:
         rx.hstack (
             leftcol(),
             rightcol(),
-            padding_x="25px", padding_y="30px"
+            padding_x="20px",
+            padding_y="30px",
+            max_width=MAX_WIDTH,
         ),
         footer(),
         align="center"
     )
 
 
-app = rx.App()
+app = rx.App(style=BASE_STYLE)
 app.add_page(index)
