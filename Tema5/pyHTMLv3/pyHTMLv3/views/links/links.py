@@ -1,7 +1,6 @@
 import reflex as rx
 
-from pyHTML.components.button_link import button_link
-
+from pyHTMLv3.components.button_link import button_link
 
 def links() -> rx.Component:
     return rx.vstack(
