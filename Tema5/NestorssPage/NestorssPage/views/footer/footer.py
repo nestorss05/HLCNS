@@ -9,6 +9,6 @@ def footer() -> rx.Component:
     return rx.hstack(
         rx.icon("hand-metal"),
         rx.text(f"{datetime.date.today().year}", padding_x="2px"),
-        rx.link("Esquizo", href=Ruta.INDEX.value),
+        rx.link("Esquizo", href=Ruta.INDEX.value, color_scheme="red"),
         padding_y="24px",
     )

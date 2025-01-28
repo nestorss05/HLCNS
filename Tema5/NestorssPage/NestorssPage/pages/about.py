@@ -18,7 +18,7 @@ def about() -> rx.Component:
                 size="5"
         ),
         rx.text(
-            "¿Y si tumbamos Alcosa?",
+            "¿Y si tumbamos Alcosa y Plaza Nueva?",
             size="3"
             ),
         rx.image(
