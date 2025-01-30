@@ -6,6 +6,6 @@ from NestorssPage.routes import Ruta
 
 def linksAbout() -> rx.Component:
     return rx.vstack(
-        button_link("Mas info", "https://www.youtube.com/watch?v=dQw4w9WgXcQ"),
+        button_link("Mas info", "https://www.youtube.com/watch?v=dQw4w9WgXcQ", "masinfo"),
         align="center",
     )
