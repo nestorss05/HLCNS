@@ -8,9 +8,30 @@ def buscadores() -> rx.Component:
     return rx.vstack(
         rx.heading("Buscadores", id="page-buscadores"),
         rx.list(
-            rx.list.item("Google", id="google"),
-            rx.list.item("Bing", id="bing"),
-            rx.list.item("Baidu", id="baidu"),
+            rx.list.item(
+                rx.link(
+                    rx.text("Google"),
+                    href="https://www.google.es/",
+                    id="google",
+                    is_external=True,
+                ),
+            ),
+            rx.list.item(
+                rx.link(
+                    rx.text("Bing"),
+                    href="https://www.bing.com/?brdr=1",
+                    id="bing",
+                    is_external=True,
+                ),
+            ),
+            rx.list.item(
+                rx.link(
+                    rx.text("Baidu"),
+                    href="https://www.baidu.com/",
+                    id="baidu",
+                    is_external=True,
+                ),
+            ),
         ),
         rx.link(
             rx.text("Volver"),

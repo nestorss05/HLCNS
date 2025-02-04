@@ -16,6 +16,12 @@ def index() -> rx.Component:
                 id="buscadores"
                 ),
             ),
-            rx.list.item("Redes sociales", id="redes"),
+            rx.list.item(
+                rx.link(
+                    rx.text("Redes sociales"),
+                    href=Ruta.REDES.value,
+                    id="redes"
+                ),
+            ),
         )
     )
