@@ -19,7 +19,7 @@ def buscadores() -> rx.Component:
             rx.list.item(
                 rx.link(
                     rx.text("Bing"),
-                    href="https://www.bing.com/?brdr=1",
+                    href="https://www.bing.com/",
                     id="bing",
                     is_external=True,
                 ),
