@@ -20,7 +20,7 @@ class Ejercicio2Test {
 	@BeforeAll
 	static void setURL() {
 		driver1 = new ChromeDriver();
-		driver1.get("http://localhost:3001/");
+		driver1.get("http://localhost:3000/");
 	}
 	
 	@Test
@@ -120,10 +120,71 @@ class Ejercicio2Test {
 	}
 	
 	@Test
+	void selectSexo() {
+		driver1.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
+		WebElement sexo = driver1.findElement(By.id("sexo"));
+		assertNotNull(sexo);
+	}
+	
+	@Test
+	void selectSexoM() {
+		WebDriverWait wait = new WebDriverWait(driver1, Duration.ofSeconds(5));
+
+        WebElement masculinoOption = wait.until(ExpectedConditions.elementToBeClickable(
+            By.xpath("//div[contains(text(),'Masculino')]")
+        ));
+        masculinoOption.click();
+
+        WebElement sexoEscogido = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("sexoEscogido")));
+        wait.until(ExpectedConditions.not(ExpectedConditions.attributeToBe(sexoEscogido, "value", "")));  
+	    
+	    String selectedSexo = sexoEscogido.getAttribute("value"); 
+	    assertEquals("Masculino", selectedSexo);
+	}
+	
+	@Test
+	void selectSexoF() {
+		WebDriverWait wait = new WebDriverWait(driver1, Duration.ofSeconds(5));
+
+        WebElement masculinoOption = wait.until(ExpectedConditions.elementToBeClickable(
+            By.xpath("//div[contains(text(),'Femenino')]")
+        ));
+        masculinoOption.click();
+
+        WebElement sexoEscogido = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("sexoEscogido")));
+        wait.until(ExpectedConditions.not(ExpectedConditions.attributeToBe(sexoEscogido, "value", "")));  
+	    
+	    String selectedSexo = sexoEscogido.getAttribute("value"); 
+	    assertEquals("Femenino", selectedSexo);
+	}
+	
+	@Test
 	void selectCorreo() {
 		driver1.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
 		WebElement correo = driver1.findElement(By.id("correo"));
 		assertNotNull(correo);
+	}	
+	
+	@Test
+	void selectCheckbox1() {
+		driver1.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
+		WebElement checkbox1 = driver1.findElement(By.id("checkbox1"));
+		assertNotNull(checkbox1);
+	}
+	
+	@Test
+	void checkCheckbox1() {
+		driver1.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
+		WebElement checkbox1 = driver1.findElement(By.id("checkbox1"));
+		String ariaChecked = checkbox1.getAttribute("aria-checked");
+		assertEquals("true", ariaChecked);
+	}
+	
+	@Test
+	void selectCheckbox2() {
+		driver1.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
+		WebElement checkbox2 = driver1.findElement(By.id("checkbox2"));
+		assertNotNull(checkbox2);
 	}
 	
 	@Test
@@ -131,21 +192,6 @@ class Ejercicio2Test {
 		driver1.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
 		WebElement enviar = driver1.findElement(By.id("enviar"));
 		assertNotNull(enviar);
-	}
-	
-	@Test
-	void selectCheckbox1() {
-		driver1.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
-		WebElement novs = driver1.findElement(By.id("novs"));
-		assertNotNull(novs);
-	}
-	
-	@Test
-	void checkCheckbox1() {
-		driver1.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
-		WebElement novs = driver1.findElement(By.id("novs"));
-		System.out.println(novs.isSelected());
-		assertTrue(novs.isSelected());
 	}
 
 }

@@ -8,8 +8,10 @@ class FormState(rx.State):
     form_data: dict = {},
     nombre = ""
     apellidos = ""
+    sexo = ""
     correo = ""
-    novs: bool = True
+    checkbox1: bool = True
+    checkbox2: bool
 
     @rx.event
     def handle_submit(self, form_data: dict):
@@ -22,11 +24,17 @@ class FormState(rx.State):
     def setApellidos(self, apellidos: str):
         self.apellidos = apellidos
 
+    def setSexo(self, sexo: str):
+        self.sexo = sexo
+
     def setCorreo(self, correo: str):
         self.correo = correo
 
-    def setNovs(self, novs: bool):
-        self.novs = novs
+    def setCheckbox1(self, checkbox1: bool):
+        self.checkbox1 = checkbox1
+
+    def setCheckbox2(self, checkbox2: bool):
+        self.checkbox2 = checkbox2
 
 @rx.page(route=Ruta.INDEX.value, title="Formulario de registro - Mi web")
 def index() -> rx.Component:
@@ -57,6 +65,17 @@ def index() -> rx.Component:
                     ),
                 ),
                 rx.hstack(
+                    rx.text("Sexo: "),
+                    rx.radio_group(
+                        [
+                            "Masculino", "Femenino",
+                        ],
+                        id="sexo",
+                        on_change=FormState.setSexo,
+                    ),
+                    rx.input(value=FormState.sexo, id="sexoEscogido", type="hidden"),
+                ),
+                rx.hstack(
                     rx.text("Correo: "),
                     rx.input(
                         placeholder="Correo",
@@ -68,11 +87,19 @@ def index() -> rx.Component:
                 ),
                 rx.hstack(
                     rx.checkbox(
-                        on_change=FormState.setNovs,
-                        checked=FormState.novs
+                        on_change=FormState.setCheckbox1,
+                        checked=FormState.checkbox1,
+                        id="checkbox1",
                     ),
                     rx.text("Deseo recibir informacion sobre novedades y ofertas: "),
-                    id="novs",
+                ),
+                rx.hstack(
+                    rx.checkbox(
+                        on_change=FormState.setCheckbox2,
+                        checked=FormState.checkbox2,
+                        id="checkbox2",
+                    ),
+                    rx.text("Declaro haber leido y aceptar las condiciones generales del programa y la normativa sobre proteccion de datos: "),
                 ),
                 rx.button(
                     rx.text("Enviar"),
